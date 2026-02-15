@@ -1,11 +1,12 @@
 <script>
+// ตรวจสอบให้แน่ใจว่าไม่มีช่องว่างแปลกๆ ติดมา
 const input = document.getElementById('pass-input');
 const output = document.getElementById('output');
-const CORRECT_KEY = "12042548"; 
-
+const CORRECT_KEY = "12042548";
+    
 input.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
-        const val = input.value;
+        const val = input.value.trim(); // เพิ่ม .trim() เพื่อตัดช่องว่างที่ผู้ใช้เผลอกด
         input.value = '';
         processCommand(val);
     }
@@ -27,12 +28,20 @@ function processCommand(val) {
 }
 
 function showSuccess() {
-    document.getElementById('terminal').style.borderColor = '#ff69b4';
-    document.getElementById('terminal').style.color = '#ff69b4';
-    input.parentElement.style.display = 'none';
+    const terminal = document.getElementById('terminal');
+    terminal.style.borderColor = '#ff69b4';
+    terminal.style.color = '#ff69b4';
+    
+    // ปิดช่อง Input เมื่อรหัสถูกต้อง
+    if (input.parentElement) {
+        input.parentElement.style.display = 'none';
+    }
 
+    // ASCII Art ที่ทำการแก้ Escape Character (\) แล้ว
     const heart = `
     <div id="heart-art">
+
+
  ___   _     _____     _______  __   _____  _   _   _____ _   _ _____ 
 |_ _| | |   / _ \ \   / / ____| \ \ / / _ \| | | | |_   _| | | | ____|
  | |  | |  | | | \ \ / /|  _|    \ V / | | | | | |   | | | |_| |  _|  
@@ -47,16 +56,17 @@ function showSuccess() {
 | |_) | |_) |  _|| |    | | | | | | | \___ \| |                       
 |  __/|  _ <| |__| |___ | | |_| | |_| |___) |_|                       
 |_|   |_| \_\_____\____|___\___/ \___/|____/(_)                       
-                     
+
+                    
     </div>
-    <div class="success" style="text-align:center;">
-    SYSTEM UNLOCKED: "I Love You, 3000" <br>
-    Happy Valentine's Day!
+    <div class="success" style="text-align:center; font-family: sans-serif; margin-top: 20px;">
+        <strong style="font-size: 1.2em;">SYSTEM UNLOCKED: "I Love You, 3000"</strong><br>
+        Happy Valentine's Day!
     </div>`;
 
     output.innerHTML = heart;
 
-   
+    // ตั้งเวลา 5 วินาทีแล้วเปลี่ยนหน้า
     setTimeout(() => {
         window.location.href = "https://drive.google.com/file/d/1aQjHxLp1tHmrvkl_QdQSAhqwg6qQp8LG/view?usp=drive_link";
     }, 5000);
