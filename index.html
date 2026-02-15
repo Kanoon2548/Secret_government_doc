@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart-OS v1.0 - Authentication</title>
+<style>
+body {
+background-color: #0d0d0d;
+color: #00ff41; /* Matrix Green */
+font-family: 'Courier New', Courier, monospace;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+overflow: hidden;
+}
+#terminal {
+width: 80%;
+max-width: 600px;
+background: rgba(0, 0, 0, 0.9);
+padding: 20px;
+border: 1px solid #00ff41;
+box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+}
+.input-line { display: flex; align-items: center; margin-top: 10px; }
+input {
+background: transparent;
+border: none;
+color: #00ff41;
+outline: none;
+font-family: inherit;
+font-size: 16px;
+width: 100%;
+}
+#cursor { animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.error { color: #ff3e3e; }
+.success { color: #ff69b4; font-weight: bold; }
+#heart-art { white-space: pre; line-height: 1.2; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<div id="terminal">
+<div id="output">
+<div>[SYSTEM] Booting Heart-OS v1.0...</div>
+<div>[SYSTEM] Initializing Emotional Drivers... Done.</div>
+<div>[SYSTEM] WARNING: Unauthorized access detected.</div>
+<br>
+<div>Please enter Access Key (Hint: Our Anniversary e.g. 1402):</div>
+</div>
+<div class="input-line">
+<span>>&nbsp;</span>
+<input type="text" id="pass-input" autofocus autocomplete="off">
+</div>
+</div>
+
+<script>
+const input = document.getElementById('pass-input');
+const output = document.getElementById('output');
+const CORRECT_KEY = "1402"; // เปลี่ยนรหัสผ่านตรงนี้ครับ!
+
+input.addEventListener('keypress', function (e) {
+if (e.key === 'Enter') {
+const val = input.value;
+input.value = '';
+processCommand(val);
+}
+});
+
+function processCommand(val) {
+if (val === CORRECT_KEY) {
+output.innerHTML += `<div>> ${val}</div>`;
+output.innerHTML += `<div class="success">[ACCESS GRANTED]</div>`;
+output.innerHTML += `<div>Decrypting hidden message...</div>`;
+
+setTimeout(() => {
+showSuccess();
+}, 1000);
+} else {
+output.innerHTML += `<div>> ${val}</div>`;
+output.innerHTML += `<div class="error">[ERROR] 401: Invalid Credentials. Access Denied.</div>`;
+}
+}
+
+function showSuccess() {
+document.getElementById('terminal').style.borderColor = '#ff69b4';
+document.getElementById('terminal').style.color = '#ff69b4';
+input.parentElement.style.display = 'none';
+
+const heart = `
+<div id="heart-art">
+****** ******
+** ** ** **
+** ** **
+** **
+** **
+** **
+** **
+** **
+** **
+***
+</div>
+<div class="success" style="text-align:center;">
+SYSTEM UNLOCKED: "I Love You, 3000" <br>
+Happy Valentine's Day!
+</div>`;
+output.innerHTML = heart;
+}
+</script>
+
+</body>
+</html>
