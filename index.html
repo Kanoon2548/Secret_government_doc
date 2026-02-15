@@ -45,11 +45,11 @@ width: 100%;
 
 <div id="terminal">
 <div id="output">
-<div>[SYSTEM] Booting Heart-OS v1.0...</div>
-<div>[SYSTEM] Initializing Emotional Drivers... Done.</div>
+<div>[SYSTEM] Initializing Love Drivers... Done.</div>
+<div>[SYSTEM] Pouring wine and lighting scented candles.</div>
 <div>[SYSTEM] WARNING: Unauthorized access detected.</div>
 <br>
-<div>Please enter Access Key (Hint: Our Anniversary e.g. 1402):</div>
+<div>Please enter Access Key (Hint: Kanoon's Birth date ddmmyyyy):</div>
 </div>
 <div class="input-line">
 <span>>&nbsp;</span>
@@ -60,7 +60,7 @@ width: 100%;
 <script>
 const input = document.getElementById('pass-input');
 const output = document.getElementById('output');
-const CORRECT_KEY = "1402"; // เปลี่ยนรหัสผ่านตรงนี้ครับ!
+const CORRECT_KEY = "12042548"; // เปลี่ยนรหัสผ่านตรงนี้ครับ!
 
 input.addEventListener('keypress', function (e) {
 if (e.key === 'Enter') {
@@ -81,7 +81,7 @@ showSuccess();
 }, 1000);
 } else {
 output.innerHTML += `<div>> ${val}</div>`;
-output.innerHTML += `<div class="error">[ERROR] 401: Invalid Credentials. Access Denied.</div>`;
+output.innerHTML += `<div class="error">[ERROR] 401: Wrong Password na kub ouan. Access Denied.</div>`;
 }
 }
 
@@ -118,11 +118,15 @@ SYSTEM UNLOCKED: "I Love You, 3000" <br>
 Happy Valentine's Day!
 </div>`;
 output.innerHTML = heart;
+setTimeout(function() {
+    window.location.href = "https://drive.google.com/file/d/1aQjHxLp1tHmrvkl_QdQSAhqwg6qQp8LG/view?usp=drive_link";
+}, 5000);
 }
 </script>
 
 </body>
 </html>
+
 
 
 
